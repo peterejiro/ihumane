@@ -68,7 +68,7 @@ curl_close($curl);
                     </div>
                   </div>
                 </div>
-                <div class="card-icon shadow-primary bg-primary">
+                <div class="card-icon shadow-primary bg-primary" style="cursor: pointer;" onclick="location.href = '<?php echo site_url('employee')?>'">
                   <i class="fas fa-users"></i>
                 </div>
                 <div class="card-wrap">
@@ -487,7 +487,7 @@ curl_close($curl);
       <div class="modal-body p-0">
         <div class="tickets-list">
 	        <?php foreach($online_users as $online_user):?>
-            <a href="#" class="ticket-item">
+            <div class="ticket-item">
               <div class="ticket-title">
                 <h4><?php echo $online_user->user_name?></h4>
               </div>
@@ -502,7 +502,7 @@ curl_close($curl);
                 <div class="text-warning">moderator</div>
                 <?php endif;?>
               </div>
-            </a>
+            </div>
 	        <?php endforeach;?>
         </div>
       </div>
