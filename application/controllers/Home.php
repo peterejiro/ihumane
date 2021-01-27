@@ -26,7 +26,7 @@ class Home extends CI_Controller
 
 	public function index(){
 
-		$this->employees->check_leave_end_date(date('yy-m-d'));
+		$this->employees->check_leave_end_date(date('Y-m-d'));
 
 		$username = $this->session->userdata('user_username');
 
@@ -135,15 +135,15 @@ class Home extends CI_Controller
 
 			if($query == true):
 
-			$user_token_data = array(
-				'user_token' => null,
-			);
-			$user_token_data = $this->security->xss_clean($user_token_data);
-			$query = $this->users->update_token($user_username, $user_token_data);
-			$this->session->unset_userdata('user_username');
-			  $this->session->unset_userdata('login_time');
-			  $this->session->sess_destroy();
-			redirect('/login');
+				$user_token_data = array(
+					'user_token' => null,
+				);
+				$user_token_data = $this->security->xss_clean($user_token_data);
+				$query = $this->users->update_token($user_username, $user_token_data);
+				$this->session->unset_userdata('user_username');
+				$this->session->unset_userdata('login_time');
+				$this->session->sess_destroy();
+				redirect('/login');
 			endif;
 
 		else:
@@ -179,8 +179,8 @@ class Home extends CI_Controller
 				$this->load->view('auth/login', $data);
 			else:
 				$data = array(
-				'user_username' => $username,
-				'password' => $password
+					'user_username' => $username,
+					'password' => $password
 				);
 				$data = $this->security->xss_clean($data);
 				$query = $this->users->login($data);
@@ -209,7 +209,7 @@ class Home extends CI_Controller
 										'notification_counts'=> count($this->employees->get_notifications(0)),
 									);
 									$this->session->set_userdata($dat);
-								redirect('home');
+									redirect('home');
 								elseif($this->users->get_user($username)->user_type == 2):
 
 									$employee_id = $this->employees->get_employee_by_unique($username)->employee_id;
@@ -253,7 +253,7 @@ class Home extends CI_Controller
 								$this->session->sess_destroy();
 								$errormsg = 'You are Already Logged in';
 								$error_msg = array(
-								'error' => $errormsg
+									'error' => $errormsg
 								);
 
 								$data['error'] = $errormsg;
@@ -281,12 +281,12 @@ class Home extends CI_Controller
 
 										$data['notifications'] = count($this->employees->get_notifications(0));
 
-									$dat = array(
+										$dat = array(
 											'notification_counts'=> count($this->employees->get_notifications(0)),
-												);
+										);
 										$this->session->set_userdata($dat);
 
-									redirect('home');
+										redirect('home');
 
 
 									elseif($this->users->get_user($username)->user_type == 2):
@@ -358,23 +358,23 @@ class Home extends CI_Controller
 			endif;
 		endif;
 
-		}
+	}
 
 	public function access_denied(){
-			$user_username = $this->session->userdata('user_username');
+		$user_username = $this->session->userdata('user_username');
 
-			if(isset($user_username)):
+		if(isset($user_username)):
 
-				$this->load->view('auth/access_denied');
-
-
-			else:
-				redirect('/login');
-
-			endif;
+			$this->load->view('auth/access_denied');
 
 
-		}
+		else:
+			redirect('/login');
+
+		endif;
+
+
+	}
 
 	public function error_404(){
 		$user_username = $this->session->userdata('user_username');
@@ -393,9 +393,9 @@ class Home extends CI_Controller
 	}
 
 	public function timestamp(){
-    date_default_timezone_set('Africa/Lagos');
+		date_default_timezone_set('Africa/Lagos');
 		echo $timestamp = date('D j M, Y g:i:s a');
-  }
+	}
 
 	public function get_online_users() {
 		$online_users = $this->users->view_online_users();
@@ -507,13 +507,13 @@ class Home extends CI_Controller
 		if(isset($username)):
 
 			redirect('home');
-			else:
-				$data['csrf_name'] = $this->security->get_csrf_token_name();
-				$data['csrf_hash'] = $this->security->get_csrf_hash();
+		else:
+			$data['csrf_name'] = $this->security->get_csrf_token_name();
+			$data['csrf_hash'] = $this->security->get_csrf_hash();
 
-				$this->load->view('auth/forgot_password', $data);
+			$this->load->view('auth/forgot_password', $data);
 
-				endif;
+		endif;
 	}
 
 	public function forgot_password_action(){
@@ -525,59 +525,59 @@ class Home extends CI_Controller
 
 			extract($_POST);
 
-		$details = $this->users->get_user_email($official_email);
+			$details = $this->users->get_user_email($official_email);
 
-		if(!empty($details)):
+			if(!empty($details)):
 
-			$token = random_string('alnum', 4);
-
-
-			$token_array = array(
-				'password_reset_user_name' => $details->user_username,
-				'password_reset_token' => $token,
-				'password_reset_time' => date("Y-m-d H:i:s"),
-			);
-
-			$query = $this->users->insert_token($token_array);
-			//$query = true;
-
-			if($query == true):
-
-				$dat = array(
-					'password_token'=>$token,
-
-				);
-				$this->session->set_userdata($dat);
+				$token = random_string('alnum', 4);
 
 
-				$subject='Token For Password Reset On iHumane - Interactive Human Resource Management System';
-				$config = Array(
-					'mailtype' => 'html',
-					'charset' => 'utf-8',
-					'priority' => '1'
-				);
-				$this->load->library('email', $config);
-				$this->email->set_newline("\r\n");
-
-				$this->email->from('support@ihumane.net', 'iHumane');
-
-				$this->email->to($official_email);  // replace it with receiver mail id
-				$this->email->subject($subject); // replace it with relevant subject
-
-				$data = array(
-					'token' => $token,
-					'name' => $details->user_name,
-					'email' => $official_email
-
+				$token_array = array(
+					'password_reset_user_name' => $details->user_username,
+					'password_reset_token' => $token,
+					'password_reset_time' => date("Y-m-d H:i:s"),
 				);
 
-				$body = $this->load->view('emails/password_reset',$data,TRUE);
-				$this->email->message($body);
-				$this->email->send();
+				$query = $this->users->insert_token($token_array);
+				//$query = true;
 
-				$data['csrf_name'] = $this->security->get_csrf_token_name();
-				$data['csrf_hash'] = $this->security->get_csrf_hash();
-				$this->load->view('auth/token', $data);
+				if($query == true):
+
+					$dat = array(
+						'password_token'=>$token,
+
+					);
+					$this->session->set_userdata($dat);
+
+
+					$subject='Token For Password Reset On iHumane - Interactive Human Resource Management System';
+					$config = Array(
+						'mailtype' => 'html',
+						'charset' => 'utf-8',
+						'priority' => '1'
+					);
+					$this->load->library('email', $config);
+					$this->email->set_newline("\r\n");
+
+					$this->email->from('support@ihumane.net', 'iHumane');
+
+					$this->email->to($official_email);  // replace it with receiver mail id
+					$this->email->subject($subject); // replace it with relevant subject
+
+					$data = array(
+						'token' => $token,
+						'name' => $details->user_name,
+						'email' => $official_email
+
+					);
+
+					$body = $this->load->view('emails/password_reset',$data,TRUE);
+					$this->email->message($body);
+					$this->email->send();
+
+					$data['csrf_name'] = $this->security->get_csrf_token_name();
+					$data['csrf_hash'] = $this->security->get_csrf_hash();
+					$this->load->view('auth/token', $data);
 
 				else:
 
@@ -589,7 +589,7 @@ class Home extends CI_Controller
 					);
 					$this->load->view('swal', $msg);
 
-					endif;
+				endif;
 
 
 			else:
@@ -602,15 +602,15 @@ class Home extends CI_Controller
 				);
 				$this->load->view('swal', $msg);
 
-				endif;
+			endif;
 
 
 
-			else:
+		else:
 
-				redirect('error_404');
+			redirect('error_404');
 
-				endif;
+		endif;
 	}
 
 	public function reset_password(){
@@ -645,7 +645,7 @@ class Home extends CI_Controller
 				);
 				$this->load->view('swal', $msg);
 
-				else:
+			else:
 
 				if($token == $entered_token):
 
@@ -693,33 +693,33 @@ class Home extends CI_Controller
 						);
 						$this->load->view('swal', $msg);
 
-						else:
-							$msg = array(
-								'msg'=> 'An Error Occurred',
-								'location' => site_url('login'),
-								'type' => 'error'
-
-							);
-							$this->load->view('swal', $msg);
-
-							endif;
-
-
 					else:
 						$msg = array(
-							'msg'=> 'Token Doesnt Match',
-							'location' => site_url('forgot_password'),
+							'msg'=> 'An Error Occurred',
+							'location' => site_url('login'),
 							'type' => 'error'
 
 						);
 						$this->load->view('swal', $msg);
 
-
-						endif;
-
-
-
 					endif;
+
+
+				else:
+					$msg = array(
+						'msg'=> 'Token Doesnt Match',
+						'location' => site_url('forgot_password'),
+						'type' => 'error'
+
+					);
+					$this->load->view('swal', $msg);
+
+
+				endif;
+
+
+
+			endif;
 
 
 

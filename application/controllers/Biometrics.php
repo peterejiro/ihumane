@@ -32,7 +32,7 @@ class Biometrics extends CI_Controller
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -75,7 +75,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -116,7 +116,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -161,7 +161,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -206,7 +206,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -252,7 +252,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -304,7 +304,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -348,7 +348,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -407,7 +407,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -450,7 +450,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -532,7 +532,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 		if (isset($_POST['RegTemp']) && !empty($_POST['RegTemp'])) {
 
 			$data 		= explode(";",$_POST['RegTemp']);
-				//$data 		= explode(";",$posttemp);
+			//$data 		= explode(";",$posttemp);
 			$vStamp 	= $data[0];
 			$sn 		= $data[1];
 			$employee_id	= $data[2];
@@ -556,7 +556,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 				if ($fid == 0) {
 
 					$finger_array = array(
-					'employee_biometrics_employee' => $employee_id,
+						'employee_biometrics_employee' => $employee_id,
 						'employee_biometrics_finger_id' =>$fid+1,
 						'employee_biometrics_data' => $regTemp
 					);
@@ -617,7 +617,8 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			echo "$msg";
 
 		}else{
-			$time= date('Y-m-d H:i:s', time()+60*60);
+			//$time= date('Y-m-d H:i:s', time()+60*60);
+			$time = date('Y-m-d H:i:s');
 
 			$data['employee'] = $this->employees->get_employee($employee_id);
 			$data['login_time'] = $time;
@@ -792,7 +793,8 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			echo "$msg";
 
 		}else{
-			$time= date('Y-m-d H:i:s', time()+60*60);
+			//$time= date('Y-m-d H:i:s', time()+60*60);
+			$time= date('Y-m-d H:i:s');
 
 			$data['employee'] = $this->employees->get_employee($employee_id);
 			$data['login_time'] = $time;
@@ -856,7 +858,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -900,7 +902,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
@@ -946,7 +948,7 @@ $data['notifications'] = $this->employees->get_notifications(0);
 			if ($user_type == 1 || $user_type == 3):
 				$permission = $this->users->check_permission($username);
 				$data['employee_management'] = $permission->employee_management;
-$data['notifications'] = $this->employees->get_notifications(0);
+				$data['notifications'] = $this->employees->get_notifications(0);
 				$data['payroll_management'] = $permission->payroll_management;
 				$data['biometrics'] = $permission->biometrics;
 				$data['user_management'] = $permission->user_management;
